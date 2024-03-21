@@ -1,8 +1,18 @@
 #card {
+  font-family: "Madimi One", sans-serif;
   margin-top: 10px;
   height: 200px;
   width: 300px;
   border: 5px solid black;
+  color: black;
+}
+#projectTitle,
+#dateDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 600;
 }
 #projectTitle {
   height: 50%;

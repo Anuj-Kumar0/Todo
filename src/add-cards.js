@@ -22,6 +22,7 @@ function addProject() {
   cardDiv.appendChild(completedIcon);
 
   content.appendChild(cardDiv);
+  console.log("add project run");
 }
 
 export { addProject };

@@ -96,6 +96,7 @@
         }
         #optional, #important, #extra{
             height: 5vh;
+            width: 100%;
             margin: 5px;
             margin-top: 25px;
             display: flex;
@@ -104,7 +105,16 @@
             font-size: 18px;
             font-family: "Madimi One", sans-serif;
             font-weight: 400;
+            transition: background-color 0.3s ease;
+            white-space: nowrap;
         }
+        #optional:hover,
+        #important:hover,
+        #extra:hover {
+            background-color: white;
+            margin-left: 0px;
+            font-size: 20px;
+}
         #sidebar_content{
             display:flex;
         }
