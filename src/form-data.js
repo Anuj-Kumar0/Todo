@@ -1,31 +1,35 @@
 import { addProject } from "./add-cards";
 
 const dialog = document.getElementById("dialog-Box");
+const description = document.getElementById("description");
 
 function addDataToCard() {
   addProject();
 
   const card = document.getElementById("card");
-  const cardTitle = document.getElementById("projectTitle");
-  const cardDate = document.getElementById("dateDiv");
-  const cardCompleteIcon = document.getElementById("completedIcon");
+  let cardTitle = document.getElementById("projectTitle");
+  let cardDate = document.getElementById("dateDiv");
 
-  const formTitle = document.getElementById("title").value;
-  const formDate = document.getElementById("dueDate").value;
+  let formTitle = document.getElementById("title");
+  let formDate = document.getElementById("dueDate");
 
   console.log("hello world");
 
   if (cardTitle) {
-    cardTitle.textContent = `Title: ${formTitle}`;
+    cardTitle.textContent = `Title: ${formTitle.value}`;
   } else {
     console.error("Card title element not found");
   }
 
   if (cardDate) {
-    cardDate.textContent = `Limit:${formDate}`;
+    cardDate.textContent = `Date: ${formDate.value}`;
   } else {
     console.error("Card date element not found");
   }
+
+  formTitle.value = "";
+  formDate.value = "";
+  description.value = "";
 }
 
 function preventDefault(event) {
