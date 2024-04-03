@@ -35,10 +35,6 @@
   background-color: #e2e8f0;
 }
 
-#deleteButton:hover {
-  background-color: red;
-}
-
 #completedButton:hover {
   background-color: limegreen;
 }

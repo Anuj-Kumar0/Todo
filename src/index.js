@@ -3,6 +3,17 @@ import { addProject } from "./add-cards";
 import { showForm } from "./show-form";
 import { closeForm } from "./close-form";
 import { preventDefault } from "./form-data";
+import { showOptional, showImportant, showExtra } from "./show-cards";
+
+let optionalDiv = document
+  .querySelector("#optional")
+  .addEventListener("click", showOptional);
+let importantDiv = document
+  .querySelector("#important")
+  .addEventListener("click", showImportant);
+let extraDiv = document
+  .querySelector("#extra")
+  .addEventListener("click", showExtra);
 
 const content = document.querySelector("#content");
 const dialog = document.getElementById("dialog-Box");
