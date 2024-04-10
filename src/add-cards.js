@@ -1,4 +1,5 @@
 import { parse, format, compareAsc } from "date-fns";
+import { editCard } from "./edit-card";
 
 let title = document.getElementById("title");
 let date = document.getElementById("dueDate");
@@ -116,6 +117,10 @@ function addProject() {
 
   extra.forEach((item) => {
     item.style.display = "none";
+  });
+
+  let selectCard = document.querySelectorAll("#card").forEach((card) => {
+    card.addEventListener("click", editCard);
   });
 }
 
