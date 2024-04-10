@@ -1,3 +1,5 @@
+import { parse, format, compareAsc } from "date-fns";
+
 let title = document.getElementById("title");
 let date = document.getElementById("dueDate");
 
@@ -14,6 +16,8 @@ function addProject() {
 
   let formTitle = title.value;
   let formDate = date.value;
+  console.log("Form Date:", formDate);
+  let parsedDate = parse(formDate, "dd-MM-yyyy", new Date());
 
   addProjectICon.style.display = "none";
   addMoreProjectsIcon.style.display = "flex";
@@ -58,6 +62,23 @@ function addProject() {
   cardDiv.appendChild(managingIcon);
 
   content.appendChild(cardDiv);
+
+  if (parsedDate && !isNaN(parsedDate)) {
+    cardDiv.dataset.date = format(parsedDate, "yyyy-MM-dd");
+    const sortedCards = Array.from(content.children).sort((a, b) => {
+      return compareAsc(
+        parse(a.dataset.date, "yyyy-MM-dd", new Date()),
+        parse(b.dataset.date, "yyyy-MM-dd", new Date())
+      );
+    });
+
+    content.innerHTML = "";
+    sortedCards.forEach((card) => {
+      content.appendChild(card);
+    });
+  } else {
+    console.error("Date string is undefined or empty");
+  }
 
   const deleteButtons = document.querySelectorAll(".deleteButton");
   deleteButtons.forEach((button) => {
