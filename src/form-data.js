@@ -7,6 +7,7 @@ function preventDefault(event) {
   if (document.forms[0].checkValidity()) {
     addProject();
     dialog.close("cancel");
+    console.log("i run");
   } else {
     alert("Please Fill All The Fields");
   }

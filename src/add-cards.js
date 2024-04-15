@@ -60,9 +60,16 @@ function addProject() {
   completeButton.classList.add("completedButton");
   completeButton.innerHTML = `<button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="35" height="35"><title>completed</title><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" /></svg></button>`;
   managingIcon.appendChild(completeButton);
+
+  const editButton = document.createElement("div");
+  editButton.classList.add("editButton");
+  editButton.innerHTML = `<button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="35" height="35"><title>Edit</title><path d="M19.39 10.74L11 19.13V22H6C4.89 22 4 21.11 4 20V4C4 2.9 4.89 2 6 2H7V9L9.5 7.5L12 9V2H18C19.1 2 20 2.89 20 4V10.3C19.78 10.42 19.57 10.56 19.39 10.74M13 19.96V22H15.04L21.17 15.88L19.13 13.83L13 19.96M22.85 13.47L21.53 12.15C21.33 11.95 21 11.95 20.81 12.15L19.83 13.13L21.87 15.17L22.85 14.19C23.05 14 23.05 13.67 22.85 13.47Z" /></svg></button>`;
+  managingIcon.appendChild(editButton);
   cardDiv.appendChild(managingIcon);
 
   content.appendChild(cardDiv);
+
+  editButton.addEventListener("click", editCard);
 
   if (parsedDate && !isNaN(parsedDate)) {
     cardDiv.dataset.date = format(parsedDate, "yyyy-MM-dd");
@@ -119,9 +126,9 @@ function addProject() {
     item.style.display = "none";
   });
 
-  let selectCard = document.querySelectorAll("#card").forEach((card) => {
-    card.addEventListener("click", editCard);
-  });
+  // let editCards = document.querySelectorAll(".editButton").forEach((button) => {
+  //   button.addEventListener("click", editCard);
+  // });
 }
 
 export { addProject, optional, important, extra };
