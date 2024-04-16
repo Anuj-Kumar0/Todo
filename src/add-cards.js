@@ -97,19 +97,25 @@ function addProject() {
       }
     });
     button.addEventListener("mouseover", () => {
-      button.style.backgroundColor = "red";
+      button.style.outline = "4px solid red";
     });
 
     button.addEventListener("mouseout", () => {
-      button.style.backgroundColor = "";
+      button.style.outline = "";
     });
   });
 
-  const completedButton = document.getElementsByClassName("completedButton");
+  const completedButton = document.querySelectorAll(".completedButton");
+  completedButton.forEach((button) => {
+    button.addEventListener("mouseover", () => {
+      button.style.outline = "4px solid limegreen";
+    });
 
-  // completedButton.addEventListener("click", () => {
-  //   completedButton.classList.add("complete");
-  // });
+    button.addEventListener("mouseout", () => {
+      button.style.outline = "";
+    });
+  });
+
   optional = document.querySelectorAll(".optional");
   important = document.querySelectorAll(".important");
   extra = document.querySelectorAll(".extra");
@@ -125,10 +131,6 @@ function addProject() {
   extra.forEach((item) => {
     item.style.display = "none";
   });
-
-  // let editCards = document.querySelectorAll(".editButton").forEach((button) => {
-  //   button.addEventListener("click", editCard);
-  // });
 }
 
 export { addProject, optional, important, extra };

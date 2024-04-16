@@ -5,15 +5,20 @@ function editCard(event) {
   const dialog = document.getElementById("dialog-Box-Two");
   dialog.showModal();
 
+  // Get the clicked card
+  const clickedCard = event.currentTarget.closest("#card");
+
+  if (!clickedCard) {
+    console.error("Clicked card not found");
+    return;
+  }
+
   // Populate form fields with card values
-  const clickedCard = event.currentTarget.parentElement.parentElement;
   const projectTitle = clickedCard.querySelector("#projectTitle").textContent;
-  const projectDescription = clickedCard.querySelector("#description");
   const dateDiv = clickedCard.querySelector("#dateDiv").textContent;
 
   const editTitle = document.querySelector("#editTitle");
   const editDueDate = document.querySelector("#editDueDate");
-  const editDescription = document.querySelector("#editDescription");
 
   editTitle.value = projectTitle.replace("Title: ", "");
   editDueDate.value = dateDiv.replace("Date: ", "");
@@ -22,14 +27,13 @@ function editCard(event) {
   dialog.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // Update the card with new values
+    // Update the clicked card with new values
     clickedCard.querySelector(
       "#projectTitle"
     ).textContent = `Title: ${editTitle.value}`;
     clickedCard.querySelector(
       "#dateDiv"
     ).textContent = `Date: ${editDueDate.value}`;
-    // clickedCard.querySelector("#description").textContent = editDescription;
 
     // Close the dialog box after submission
     dialog.close();
