@@ -57,6 +57,30 @@
                 </div>
                     </form>
                 </dialog> 
+
+                <dialog id="dialog-Box-Two">
+                    <form>
+                        <p>
+                            <label for="title">Title:&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="text" id="editTitle" name="title" required>
+                            </label>
+                    </p>
+                    <p>
+                        <label for="description">Description:&nbsp;&nbsp;&nbsp;
+                            <input type="text" id="editDescription" name="description" required>
+                        </label>
+                    </p>
+                    <p>
+                        <label for="dueDate">Due Date:&nbsp;
+                            <input type="date" id="editDueDate" name="dueDate" required>
+                        </label>
+                    </p>
+                <div>
+                    <button id="cancelButton" type="button" value="cancel" formmethod="dialog">Cancel</button>
+                    <button id="edit">Edit</button>
+                </div>
+                    </form>
+                </dialog> 
                 
             </div>
         </div>
@@ -132,14 +156,14 @@
         overflow-y: auto;
         }
         #add-project{
-        display: grid;
+        display: none;
         justify-content: center;
         align-items: center;
         }
         #add-more-projects svg{
             margin-right: 10px;
             cursor: pointer;
-            display: none;
+            display: flex;
         }
     </style>
     

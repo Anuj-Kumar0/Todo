@@ -17,8 +17,9 @@ function addProject() {
 
   let formTitle = title.value;
   let formDate = date.value;
-  console.log("Form Date:", formDate);
   let parsedDate = parse(formDate, "dd-MM-yyyy", new Date());
+
+  console.log("Form Date:", formDate);
 
   addProjectICon.style.display = "none";
   addMoreProjectsIcon.style.display = "flex";
@@ -70,23 +71,6 @@ function addProject() {
   content.appendChild(cardDiv);
 
   editButton.addEventListener("click", editCard);
-
-  if (parsedDate && !isNaN(parsedDate)) {
-    cardDiv.dataset.date = format(parsedDate, "yyyy-MM-dd");
-    const sortedCards = Array.from(content.children).sort((a, b) => {
-      return compareAsc(
-        parse(a.dataset.date, "yyyy-MM-dd", new Date()),
-        parse(b.dataset.date, "yyyy-MM-dd", new Date())
-      );
-    });
-
-    content.innerHTML = "";
-    sortedCards.forEach((card) => {
-      content.appendChild(card);
-    });
-  } else {
-    console.error("Date string is undefined or empty");
-  }
 
   const deleteButtons = document.querySelectorAll(".deleteButton");
   deleteButtons.forEach((button) => {
