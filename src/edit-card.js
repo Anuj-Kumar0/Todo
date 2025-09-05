@@ -1,7 +1,13 @@
-let title = document.getElementById("title");
-let date = document.getElementById("dueDate");
+// ---- storage helpers (same as in add-cards.js) ----
+function saveTasks(tasks) {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
-function editCard(event) {
+function getTasks() {
+  return JSON.parse(localStorage.getItem("tasks")) || [];
+}
+
+function editCard(event, task) {
   const dialog = document.getElementById("dialog-Box-Two");
   dialog.showModal();
 
@@ -14,28 +20,37 @@ function editCard(event) {
   }
 
   // Populate form fields with card values
-  const projectTitle = clickedCard.querySelector("#projectTitle").textContent;
-  const dateDiv = clickedCard.querySelector("#dateDiv").textContent;
-
   const editTitle = document.querySelector("#editTitle");
   const editDueDate = document.querySelector("#editDueDate");
 
-  editTitle.value = projectTitle.replace("Title: ", "");
-  editDueDate.value = dateDiv.replace("Date: ", "");
+  editTitle.value = task.title;
+  editDueDate.value = task.date;
 
-  // Add event listener to form submission
-  dialog.addEventListener("submit", (e) => {
+  // --- handle submission ---
+  const editButton = document.querySelector("#edit");
+
+  // remove old listeners to prevent duplicates
+  const newEditButton = editButton.cloneNode(true);
+  editButton.parentNode.replaceChild(newEditButton, editButton);
+
+  newEditButton.addEventListener("click", (e) => {
     e.preventDefault();
 
-    // Update the clicked card with new values
+    // update task object
+    task.title = editTitle.value;
+    task.date = editDueDate.value;
+
+    // update DOM
     clickedCard.querySelector(
       "#projectTitle"
-    ).textContent = `Title: ${editTitle.value}`;
-    clickedCard.querySelector(
-      "#dateDiv"
-    ).textContent = `Date: ${editDueDate.value}`;
+    ).textContent = `Title: ${task.title}`;
+    clickedCard.querySelector("#dateDiv").textContent = `Date: ${task.date}`;
 
-    // Close the dialog box after submission
+    // update storage
+    let tasks = getTasks();
+    tasks = tasks.map((t) => (t.id === task.id ? task : t));
+    saveTasks(tasks);
+
     dialog.close();
   });
 

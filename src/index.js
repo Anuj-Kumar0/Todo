@@ -4,6 +4,7 @@ import { showForm } from "./show-form";
 import { closeForm } from "./close-form";
 import { preventDefault } from "./form-data";
 import { showOptional, showImportant, showExtra } from "./show-cards";
+import { loadTasks } from "./add-cards";
 
 let optionalDiv = document
   .querySelector("#optional")
@@ -31,3 +32,7 @@ const addProjectICon = document
 
 cancelButton.addEventListener("click", closeForm);
 confirmBtn.addEventListener("click", preventDefault);
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadTasks();
+});
